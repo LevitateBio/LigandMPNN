@@ -11,15 +11,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip
-
-# Install CUDA compatibility libraries
-RUN apt-get update \
-    && apt-get install -y cuda-compat-12-1 \
-    && rm -rf /var/lib/apt/lists/*
-
-# Set the library path
-ENV LD_LIBRARY_PATH=/usr/local/cuda/compat/:$LD_LIBRARY_PATH
-
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ENV PYTHONPATH=/home/LigandMPNN/
 ENV LIGAND_MPNN=/home/LigandMPNN/
